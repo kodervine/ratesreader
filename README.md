@@ -2,7 +2,7 @@
 
 ## ratesreader
 
-An invoice generator app where users can create, download and send invoices to their clients
+This tool provides real-time exchange rates, historical price data, and news updates for multiple currencies, displayed through intuitive visualizations
 
 ## About The Project
 
