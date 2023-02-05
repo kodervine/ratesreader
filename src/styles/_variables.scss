@@ -7,18 +7,6 @@ $gold: #eba554;
 $error: #d32752;
 $Info: #f6c31c;
 
-// color palette
-$colors: (
-  "primary": $green-primary,
-  "secondary": $green-secondary,
-  "aqua": $aqua,
-  "maroon": $maroon,
-  "gold": $gold,
-  "black": black,
-  "white": white,
-);
-
-@debug map-get($colors, "primary");
 // spacing
 $base-padding: 0.75rem;
 $base-margin: 0.75rem;

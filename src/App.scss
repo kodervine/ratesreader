@@ -1,7 +1,7 @@
 @use "sass:math";
 
-@import "./Styles/variables.scss";
-@import "./Styles/mixins";
+@import "./styles/variables.scss";
+@import "./styles/mixins";
 
 body {
   font-size: math.div($font-size-2xl, 2);
