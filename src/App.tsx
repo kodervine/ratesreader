@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-
+import "@tremor/react/dist/esm/tremor.css";
 function App() {
   return <div className="text-2xl bg-gray-100 font-bold">I am here</div>;
 }
