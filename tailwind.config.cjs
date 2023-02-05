@@ -9,6 +9,10 @@ module.exports = {
       "maroon-color": "#77090e",
       "gold-color": "#eba554",
     },
+    fontFamily: {
+      inter: ["Inter", "sans-serif"],
+      roboto: ["Roboto", "sans-serif"],
+    },
     extend: {},
   },
   plugins: [],
