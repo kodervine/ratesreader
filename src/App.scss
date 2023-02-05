@@ -1,2 +1,6 @@
 @import "./Styles/variables.scss";
 @import "./Styles/mixins";
+
+body {
+  font-size: $font-size-sm;
+}
