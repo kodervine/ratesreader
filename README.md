@@ -11,7 +11,7 @@ Proposed idea - The currency data visualization dashboard is a tool that helps u
 ### Built With
 
 - React + Vite
-- Scss
+- Tailwind css
 - Typescript
 - React Hooks
 - Netlify
