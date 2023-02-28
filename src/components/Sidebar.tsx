@@ -20,12 +20,12 @@ const Sidebar = () => {
               <RxDashboard size={20} />
             </div>
           </Link>
-          <Link to="/customers">
+          <Link to="/converter">
             <div className="bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
               <RxPerson size={20} />
             </div>
           </Link>
-          <Link to="/orders">
+          <Link to="/news">
             <div className="bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
               <HiOutlineShoppingBag size={20} />
             </div>
