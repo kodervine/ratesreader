@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./App.css";
-import "@tremor/react/dist/esm/tremor.css";
 import Home from "./pages/Home";
+import AppRoutes from "./routes/AppRoutes";
 function App() {
   return (
     <div className="text-2xl bg-gray-100 font-bold">
-      <Home />
+      <AppRoutes />
     </div>
   );
 }
