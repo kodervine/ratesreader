@@ -43,15 +43,16 @@ const NewsApiProvider: FC = ({ children }: any) => {
         const data = await response.json();
         setArticles(data.articles);
         setLoading(false);
-        console.log(data);
+        console.log(data.articles);
       } catch (error) {
         setLoading(false);
         setError(error.message);
+        console.log(error);
       }
     };
 
     fetchArticles();
-  }, [articles]);
+  }, []);
 
   return (
     <NewsApiContext.Provider value={{ articles, loading, error }}>
