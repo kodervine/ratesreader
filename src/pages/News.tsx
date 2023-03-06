@@ -7,7 +7,7 @@ import Sidebar from "../components/Sidebar";
 const News = () => {
   const { newsApiArticles } = useGlobalContext();
   return (
-    <div className="bg-gray-100 min-h-screen flex justify-between gap-40">
+    <div className="bg-gray-100 min-h-screen flex gap-20">
       <Sidebar />
       <div className="">
         <div className="flex justify-between p-4">
@@ -19,6 +19,7 @@ const News = () => {
             <div className="my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer">
               <span>News</span>
               <span className="sm:text-left text-right">Status</span>
+              <span className="hidden md:grid">Last Order</span>
               <span className="hidden sm:grid">Method</span>
             </div>
             <ul>
@@ -37,12 +38,14 @@ const News = () => {
                     </div>
                     <p className="text-gray-600 sm:text-left text-right">
                       <span className="bg-green-200 p-2 rounded-lg">
-                        <a href={url}>Read more</a>
+                        {source.name}
                       </span>
                     </p>
-
+                    <p className="hidden md:flex">.date</p>
                     <div className="sm:flex hidden justify-between items-center">
-                      <p>{source.name}</p>
+                      <p>
+                        <a href={url}>link</a>
+                      </p>
                       <BsThreeDotsVertical />
                     </div>
                   </li>

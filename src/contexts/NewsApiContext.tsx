@@ -14,16 +14,18 @@ type NewsApiArticle = {
   title: string;
   description: string;
   url: string;
+  source: { name: string };
+  author: string;
 };
 
 type NewsApiContextType = {
-  articles: NewsApiArticle[];
+  newsApiArticles: NewsApiArticle[];
   loading: boolean;
   error: string | null;
 };
 
 const NewsApiContext = React.createContext<NewsApiContextType>({
-  articles: [],
+  newsApiArticles: [],
   loading: true,
   error: null,
 });

@@ -7,7 +7,7 @@ import TopCards from "../components/TopCards";
 
 const Home = () => {
   return (
-    <div className="flex flex-row justify-between w-full">
+    <div className="flex flex-row gap-20 w-full">
       <Sidebar />
       <div className="flex flex-col">
         <Header />
