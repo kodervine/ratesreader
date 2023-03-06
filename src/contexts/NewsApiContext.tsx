@@ -30,7 +30,7 @@ const NewsApiContext = React.createContext<NewsApiContextType>({
 
 const NewsApiProvider: FC = ({ children }: any) => {
   // define state and functions here
-  const [articles, setArticles] = useState<NewsApiArticle[]>([]);
+  const [newsApiArticles, setNewsApiArticles] = useState<NewsApiArticle[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -41,7 +41,7 @@ const NewsApiProvider: FC = ({ children }: any) => {
           "https://newsapi.org/v2/top-headlines?country=ng&apiKey=bb35831a96ff46feaa9a86668569191d"
         );
         const data = await response.json();
-        setArticles(data.articles);
+        setNewsApiArticles(data.articles);
         setLoading(false);
         console.log(data.articles);
       } catch (error) {
@@ -55,7 +55,7 @@ const NewsApiProvider: FC = ({ children }: any) => {
   }, []);
 
   return (
-    <NewsApiContext.Provider value={{ articles, loading, error }}>
+    <NewsApiContext.Provider value={{ newsApiArticles, loading, error }}>
       {children}
     </NewsApiContext.Provider>
   );
