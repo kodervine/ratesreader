@@ -1,11 +1,10 @@
-import React from "react";
-import { useGlobalContext } from "../contexts/NewsApiContext";
+import { useNewsContext } from "../contexts/NewsApiContext";
 import { FaShoppingBag } from "react-icons/fa";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Sidebar from "../components/Sidebar";
 
 const News = () => {
-  const { newsApiArticles } = useGlobalContext();
+  const { newsApiArticles } = useNewsContext();
   return (
     <div className="bg-gray-100 min-h-screen flex gap-20">
       <Sidebar />
@@ -23,7 +22,7 @@ const News = () => {
               <span className="hidden sm:grid">Method</span>
             </div>
             <ul>
-              {newsApiArticles.map((newsitems) => {
+              {newsApiArticles?.map((newsitems) => {
                 const { source, author, title, url } = newsitems;
                 return (
                   <li className="bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-col-2">

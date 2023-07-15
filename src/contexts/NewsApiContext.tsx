@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  createContext,
-  FC,
-  useState,
-  useEffect,
-} from "react";
+import React, { useContext, FC, useState, useEffect } from "react";
 
 // https://newsapi.org/v2/top-headlines?country=us&apiKey=bb35831a96ff46feaa9a86668569191d
 
@@ -40,7 +34,9 @@ const NewsApiProvider: FC = ({ children }: any) => {
     const fetchArticles = async () => {
       try {
         const response = await fetch(
-          "https://newsapi.org/v2/top-headlines?country=ng&apiKey=bb35831a96ff46feaa9a86668569191d"
+          `https://newsapi.org/v2/top-headlines?country=ng&apiKey=${
+            import.meta.env.NEWS_API_KEY
+          }`
         );
         const data = await response.json();
         setNewsApiArticles(data.articles);
@@ -48,7 +44,7 @@ const NewsApiProvider: FC = ({ children }: any) => {
         console.log(data.articles);
       } catch (error) {
         setLoading(false);
-        setError(error.message);
+        // setError(error.message);
         console.log(error);
       }
     };
@@ -63,7 +59,7 @@ const NewsApiProvider: FC = ({ children }: any) => {
   );
 };
 
-export const useGlobalContext = (): NewsApiContextType => {
+export const useNewsContext = (): NewsApiContextType => {
   const context = useContext(NewsApiContext);
   if (!context) {
     throw new Error("useGlobalContext must be used within NewsApiProvider");
