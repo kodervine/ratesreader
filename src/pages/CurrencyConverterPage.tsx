@@ -1,8 +1,7 @@
-import React from "react";
 import { BsPersonFill, BsThreeDotsVertical } from "react-icons/bs";
-import Sidebar from "../components/Sidebar";
+import { Sidebar } from "components";
 
-const CurrencyConverter = () => {
+export const CurrencyConverterPage = () => {
   return (
     <section className="bg-gray-100 min-h-screen flex justify-between">
       <Sidebar />
@@ -43,5 +42,3 @@ const CurrencyConverter = () => {
     </section>
   );
 };
-
-export default CurrencyConverter;

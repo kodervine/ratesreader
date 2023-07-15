@@ -1,15 +1,13 @@
+import { CurrencyConverterPage, DashboardPage, NewsPage } from "pages";
 import { Routes, Route } from "react-router-dom";
-import CurrencyConverter from "../pages/CurrencyConverterPage";
-import Home from "../pages/Home";
-import News from "../pages/News";
 
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      {/* <Route path="/dashboard" element={} */}
-      <Route path="/news" element={<News />} />
-      <Route path="/converter" element={<CurrencyConverter />} />{" "}
+      <Route path="/" element={<DashboardPage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/news" element={<NewsPage />} />
+      <Route path="/converter" element={<CurrencyConverterPage />} />{" "}
     </Routes>
   );
 }
