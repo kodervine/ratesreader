@@ -1,20 +1,20 @@
 import { DashboardChart, Header, Sidebar, TopCards } from "components";
-import NewsUpdates from "components/News/NewsUpdates";
 
 export const DashboardPage = () => {
   return (
-    <main className="flex flex-row w-full font-sans">
+    <main className="flex flex-row w-full font-inter">
       <Sidebar />
 
       <section className="flex flex-col w-full">
-        <Header />
-        <TopCards />
-        <div className="flex">
-          <DashboardChart />
-          <NewsUpdates />
-        </div>
+        <Header title="Dashboard Page" />
+        <article className="flex">
+          <div className="w-full">
+            <TopCards />
+            <DashboardChart />{" "}
+          </div>
+          <section className="w-2/5">Right side of the Dashboard</section>
+        </article>
       </section>
-      <div className="w-2/5">Reight side</div>
     </main>
   );
 };
