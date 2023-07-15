@@ -46,3 +46,28 @@ export const DashboardChart = () => (
     />
   </Card>
 );
+
+// import { Card, Title, LineChart } from "@tremor/react";
+// import { useForexApiContext } from "contexts";
+
+// const dataFormatter = (number: number) =>
+//   `${Intl.NumberFormat("us").format(number).toString()}`;
+
+// export const DashboardChart = () => {
+//   const { latestChartData } = useForexApiContext();
+
+//   return (
+//     <Card>
+//       <Title>Forex rates</Title>
+//       <LineChart
+//         className="mt-6"
+//         data={latestChartData}
+//         index="year"
+//         categories={["Growth Rate"]}
+//         colors={["emerald"]}
+//         valueFormatter={dataFormatter}
+//         yAxisWidth={40}
+//       />
+//     </Card>
+//   );
+// };

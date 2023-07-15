@@ -1,66 +1,59 @@
 import React, { useContext, FC, useState, useEffect } from "react";
 
-type ForexApiArticle = {
-  title: string;
-  description: string;
-  url: string;
-  source: { name: string };
-  author: string;
-};
+interface CurrencyData {
+  year: string;
+  "Growth Rate": number;
+}
 
-type ForexApiContextType = {
-  ForexApiArticles: ForexApiArticle[];
-  loading: boolean;
-  error: string | null;
-};
+interface ForexApiContextValue {
+  latestChartData: CurrencyData[];
+}
 
-const ForexApiContext = React.createContext<ForexApiContextType>({
-  ForexApiArticles: [],
-  loading: true,
-  error: null,
-});
+const ForexApiContext = React.createContext<ForexApiContextValue | undefined>(
+  undefined
+);
 
-const ForexApiProvider: FC = ({ children }: any) => {
-  // define state and functions here
-  const [ForexApiArticles, setForexApiArticles] = useState<ForexApiArticle[]>(
-    []
-  );
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+const ForexApiProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [latestChartData, setLatestChartData] = useState<CurrencyData[]>([]);
 
   useEffect(() => {
-    const fetchArticles = async () => {
+    const fetchChartData = async () => {
       try {
         const response = await fetch(
-          `http://api.exchangeratesapi.io/v1/latest?access_key= ${
+          `http://api.exchangeratesapi.io/v1/latest?access_key=${
             import.meta.env.VITE_EXCHANGE_RATES_API_KEY
           }`
         );
         const data = await response.json();
-        setForexApiArticles(data.articles);
-        setLoading(false);
-        console.log(data.articles);
+        const rates = data.rates;
+
+        const chartData: CurrencyData[] = Object.keys(rates).map(
+          (currency) => ({
+            year: currency,
+            "Growth Rate": rates[currency],
+          })
+        );
+
+        setLatestChartData(chartData);
       } catch (error) {
-        setLoading(false);
-        // setError(error.message);
         console.log(error);
       }
     };
 
-    fetchArticles();
+    fetchChartData();
   }, []);
 
   return (
-    <ForexApiContext.Provider value={{ ForexApiArticles, loading, error }}>
+    <ForexApiContext.Provider value={{ latestChartData }}>
       {children}
     </ForexApiContext.Provider>
   );
 };
 
-export const useNewsContext = (): ForexApiContextType => {
+export const useForexApiContext = (): ForexApiContextValue => {
   const context = useContext(ForexApiContext);
   if (!context) {
-    throw new Error("useGlobalContext must be used within ForexApiContext");
+    throw new Error("useForexApiContext must be used within ForexApiProvider");
   }
   return context;
 };
