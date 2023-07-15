@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../components/Header";
 import HistoricalChart from "../components/HistoricalChart";
 import NewsUpdates from "../components/NewsUpdates";
@@ -7,17 +6,19 @@ import TopCards from "../components/TopCards";
 
 const Home = () => {
   return (
-    <div className="flex flex-row gap-20 w-full">
+    <main className="flex flex-row w-full font-inter">
       <Sidebar />
-      <div className="flex flex-col">
+
+      <section className="flex flex-col w-full">
         <Header />
         <TopCards />
         <div className="flex">
           <HistoricalChart />
           <NewsUpdates />
         </div>
-      </div>
-    </div>
+      </section>
+      <div>Reight side</div>
+    </main>
   );
 };
 

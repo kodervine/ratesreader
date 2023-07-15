@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import React, { Children } from "react";
 import { RxSketchLogo, RxDashboard, RxPerson } from "react-icons/rx";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { FiSettings } from "react-icons/fi";
@@ -7,7 +6,7 @@ import { FiSettings } from "react-icons/fi";
 const Sidebar = () => {
   return (
     <div className="flex">
-      <div className="fixed w-20 h-screen p-4 bg-white border-r-[1px] flex flex-col justify-between">
+      <div className="w-20 h-screen p-4 bg-white border-r-[1px] flex flex-col justify-between">
         <div className="flex flex-col items-center">
           <Link to="/">
             <div className="bg-purple-800 text-white p-3 rounded-lg inline-block">
