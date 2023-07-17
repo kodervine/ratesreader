@@ -18,7 +18,10 @@ export const TopCards = () => {
                 <GiReceiveMoney size={40} />
                 <Text>Sales</Text>
                 <Metric>
-                  $<span className="text-4xl font-bold">7,846</span>
+                  $
+                  <span className="text-4xl font-bold font-robotoSlab">
+                    7,846
+                  </span>
                 </Metric>
               </Card>
             );

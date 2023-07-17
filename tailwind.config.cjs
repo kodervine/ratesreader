@@ -100,6 +100,7 @@ module.exports = {
       fontFamily: {
         sans: ["Inter var, sans-serif"],
         inter: ["inter"],
+        robotoSlab: ["Roboto Slab"],
       },
     },
   },
