@@ -2,7 +2,7 @@ import { DashboardChart, Header, Sidebar, TopCards } from "components";
 
 export const DashboardPage = () => {
   return (
-    <main className="flex flex-row w-full font-inter">
+    <main className="flex flex-row w-full">
       <Sidebar />
 
       <section className="flex flex-col w-full">
