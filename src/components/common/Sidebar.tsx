@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { RxSketchLogo, RxDashboard, RxPerson } from "react-icons/rx";
-import { HiOutlineShoppingBag } from "react-icons/hi";
+import { RxSketchLogo, RxDashboard } from "react-icons/rx";
+import { BsCurrencyExchange, BsNewspaper } from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
 import { Icon } from "@tremor/react";
 
@@ -12,17 +12,18 @@ const sidebarItems = [
   },
   {
     path: "/converter",
-    icon: RxPerson,
+    icon: BsCurrencyExchange,
     tooltip: "Currency converter",
   },
   {
     path: "/news",
-    icon: HiOutlineShoppingBag,
+    icon: BsNewspaper,
     tooltip: "News",
   },
   {
     path: "/settings",
     icon: FiSettings,
+    tooltio: "Settings",
   },
 ];
 
@@ -39,12 +40,12 @@ export const Sidebar = () => {
           <span className="border-b-[1px] border-gray-200 w-full p-2"></span>
           {sidebarItems.map((item, index) => (
             <Link to={item.path} key={index}>
-              <div className="bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
+              <div className="bg-green-100 hover:bg-green-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
                 <Icon
                   size={"lg"}
                   icon={item.icon}
                   tooltip={item.tooltip}
-                  color="emerald"
+                  className="text-green-700"
                 />
               </div>
             </Link>

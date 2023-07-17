@@ -8,10 +8,8 @@ export const Header = ({
   location = "Worldwide",
 }: HeaderProps) => {
   return (
-    <div className="flex justify-between px-4 pt-4">
-      <div>
-        <h2>{title}</h2>
-      </div>
+    <header className="flex justify-between px-4 pt-4  ">
+      <h2 className="text-3xl ">{title}</h2>
       <div className="flex items-center">
         <p>Location: {location}</p>
         <p>Date: today date</p>
@@ -22,6 +20,6 @@ export const Header = ({
           <option>Option 3</option>
         </select>
       </div>
-    </div>
+    </header>
   );
 };

@@ -3,7 +3,7 @@ import { Sidebar } from "components";
 
 export const CurrencyConverterPage = () => {
   return (
-    <section className="bg-gray-100 min-h-screen flex justify-between">
+    <section className="min-h-screen flex justify-between">
       <Sidebar />
       <main>
         <section className="flex justify-between p-4 ">
