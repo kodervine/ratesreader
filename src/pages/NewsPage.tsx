@@ -9,6 +9,9 @@ export const NewsPage = () => {
       <div className="w-full">
         <div className="flex justify-between p-4 ">
           <Header title="What is in the news?" />
+          <h2 className="mb-12 text-center text-3xl font-bold">
+            Latest articles
+          </h2>
         </div>
         <NewsGrid />
       </div>

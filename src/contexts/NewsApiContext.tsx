@@ -29,15 +29,21 @@ const NewsApiProvider: FC = ({ children }: any) => {
   const [newsApiArticles, setNewsApiArticles] = useState<NewsApiArticle[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const newsApiKey = import.meta.env.VITE_NEWS_API_KEY;
+  const apiUrl = `https://newsapi.org/v2/top-headlines?country=ng&apiKey=${newsApiKey}`;
+
+  // Use the 'apiUrl' variable in your code to make the API call
+  // (e.g., using fetch() or an HTTP library)
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await fetch(
-          `https://newsapi.org/v2/top-headlines?country=ng&apiKey=${
-            import.meta.env.VITE_NEWS_API_KEY
-          }`
-        );
+        const response = await fetch(apiUrl);
+        // const response = await fetch(
+        //   `https://newsapi.org/v2/top-headlines?country=ng&apiKey=${
+        //     import.meta.env.VITE_NEWS_API_KEY
+        //   }`
+        // );
         const data = await response.json();
         setNewsApiArticles(data.articles);
         setLoading(false);

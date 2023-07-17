@@ -1,46 +1,60 @@
-import { FaShoppingBag } from "react-icons/fa";
-import { Grid, Col, Card, Text, Metric } from "@tremor/react";
+import { Grid, Card } from "@tremor/react";
+import { MdPublic } from "react-icons/md";
 import { useNewsContext } from "contexts";
-import { BsThreeDotsVertical } from "react-icons/bs";
 export const NewsGrid = () => {
   const { newsApiArticles } = useNewsContext();
   return (
-    <Grid numItems={1} numItemsSm={2} numItemsLg={3} className="gap-2">
-      {newsApiArticles?.map((newsitems: any) => {
-        const { source, author, title, url } = newsitems;
+    <>
+      <Grid numItems={1} numItemsSm={2} numItemsLg={3} className="gap-2">
+        {/* Grid */}
+      </Grid>
+      <section className="grid gap-6 lg:grid-cols-3 xl:gap-x-2">
+        {newsApiArticles?.map((newsitems: any) => {
+          const { source, author, title, url, publishedAt } = newsitems;
 
-        return (
-          <Col>
+          const date = new Date(publishedAt);
+          const formattedDate = date.toDateString();
+
+          console.log(formattedDate);
+
+          return (
             <Card>
-              <Text>Title</Text>
-              <Metric>KPI 1</Metric>
-              <li className="bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-col-2">
-                <div className="flex">
-                  <div className="bg-purple-100 p-3 rounded-lg">
-                    <FaShoppingBag className="text-purple-800" />
-                  </div>
-                  <div className="pl-4">
-                    <p className="text-gray-800 font-bold">{author}</p>
-                    <p className="text-gray-800">{title.slice(0, 15)}</p>
-                  </div>
+              <div className="mb-6 lg:mb-0">
+                <div
+                  className="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                >
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg"
+                    className="w-full"
+                    alt="Louvre"
+                  />
+                  <a href="#!">
+                    <div className="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]"></div>
+                  </a>
                 </div>
-                <p className="text-gray-600 sm:text-left text-right">
-                  <span className="bg-green-200 p-2 rounded-lg">
-                    {source.name}
-                  </span>
+
+                <h5 className="mb-3 text-lg font-bold">{title}</h5>
+                <div className="mb-3 flex items-center justify-center text-sm font-medium text-danger dark:text-danger-500">
+                  <MdPublic />: {source.name}
+                </div>
+                <p className="mb-6 text-neutral-500 dark:text-neutral-300">
+                  <small>
+                    Published <u>{formattedDate}</u> by
+                    <a href={url}>{author}</a>
+                  </small>
                 </p>
-                <p className="hidden md:flex">.date</p>
-                <div className="sm:flex hidden justify-between items-center">
-                  <p>
-                    <a href={url}>link</a>
-                  </p>
-                  <BsThreeDotsVertical />
-                </div>
-              </li>
+                <p className="text-neutral-500 dark:text-neutral-300">
+                  Ut pretium ultricies dignissim. Sed sit amet mi eget urna
+                  placerat vulputate. Ut vulputate est non quam dignissim
+                  elementum. Donec a ullamcorper diam.
+                </p>
+              </div>
             </Card>
-          </Col>
-        );
-      })}
-    </Grid>
+          );
+        })}
+      </section>
+    </>
   );
 };
