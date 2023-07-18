@@ -28,11 +28,12 @@ const NewsApiProvider: FC = ({ children }: any) => {
   const [newsApiArticles, setNewsApiArticles] = useState<NewsApiArticle[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const newsApiKey = import.meta.env.VITE_NEWS_API_KEY;
+  const { VITE_NEWS_API_KEY } = import.meta.env;
+
   const apiUrl =
     activeNewsTab === ENewsCategory.All
-      ? `https://newsapi.org/v2/top-headlines?country=ng&apiKey=${newsApiKey}`
-      : `https://newsapi.org/v2/top-headlines?country=ng&category=${activeNewsTab}&apiKey=${newsApiKey}`;
+      ? `https://newsapi.org/v2/top-headlines?country=ng&apiKey=${VITE_NEWS_API_KEY}`
+      : `https://newsapi.org/v2/top-headlines?country=ng&category=${activeNewsTab}&apiKey=${VITE_NEWS_API_KEY}`;
 
   useEffect(() => {
     const fetchArticles = async () => {

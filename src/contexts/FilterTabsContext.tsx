@@ -2,8 +2,8 @@ import React, { createContext, useContext, useState } from "react";
 import { ENewsCategory } from "types";
 
 type FilterContextType = {
-  activeNewsTab: string;
-  handleFilterNewsTab: (section: string) => void;
+  activeNewsTab: ENewsCategory;
+  handleFilterNewsTab: (section: ENewsCategory) => void;
 };
 
 const FilterContext = createContext<FilterContextType>({
@@ -20,7 +20,7 @@ export const FilterProvider: React.FC = ({
 }: React.PropsWithChildren<{}>) => {
   const [activeNewsTab, setActiveNewsTab] = useState(ENewsCategory.All);
 
-  const handleFilterNewsTab = (section: string) => {
+  const handleFilterNewsTab = (section: ENewsCategory) => {
     setActiveNewsTab(section);
   };
 

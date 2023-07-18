@@ -7,7 +7,7 @@ export default function AppRoutes() {
       <Route path="/" element={<DashboardPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/news" element={<NewsPage />} />
-      <Route path="/converter" element={<CurrencyConverterPage />} />{" "}
+      <Route path="/converter" element={<CurrencyConverterPage />} />
     </Routes>
   );
 }

@@ -15,14 +15,12 @@ const ForexApiContext = React.createContext<ForexApiContextValue | undefined>(
 
 const ForexApiProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
   const [latestChartData, setLatestChartData] = useState<CurrencyData[]>([]);
-
+  const { VITE_EXCHANGE_RATES_API_KEY } = import.meta.env;
   useEffect(() => {
     const fetchChartData = async () => {
       try {
         const response = await fetch(
-          `http://api.exchangeratesapi.io/v1/latest?access_key=${
-            import.meta.env.VITE_EXCHANGE_RATES_API_KEY
-          }`
+          `http://api.exchangeratesapi.io/v1/latest?access_key=${VITE_EXCHANGE_RATES_API_KEY}`
         );
         const data = await response.json();
         const rates = data.rates;

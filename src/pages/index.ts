@@ -1,3 +1,3 @@
-export * from "./CurrencyConverterPage";
+export * from "./ConverterPage";
 export * from "./DashboardPage";
 export * from "./NewsPage";
