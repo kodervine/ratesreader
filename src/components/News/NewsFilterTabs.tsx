@@ -1,36 +1,35 @@
-import { useState } from "react";
+import { useFilterContext } from "contexts";
+import { ENewsCategory } from "types";
 
 export const NewsFilterTabs = () => {
-  const sections = [
-    "All",
-    "Business",
-    "Entertainment",
-    "Health",
-    "Science",
-    "Sports",
-    "Technology",
+  const tabs = [
+    ENewsCategory.All,
+    ENewsCategory.Business,
+    ENewsCategory.Entertainment,
+    ENewsCategory.Health,
+    ENewsCategory.Science,
+    ENewsCategory.Sports,
+    ENewsCategory.Technology,
   ];
-
-  const [activeSection, setActiveSection] = useState("All");
-
-  const handleClick = (section: string) => {
-    setActiveSection(section);
+  const { activeNewsTab, handleFilterNewsTab } = useFilterContext();
+  const handleClick = (tabs: ENewsCategory) => {
+    handleFilterNewsTab(tabs);
   };
 
   return (
     <nav className="flex justify-center mb-6 overflow-x-auto md:overflow-hidden">
       <ul className="flex space-x-4">
-        {sections.map((section, index) => (
+        {tabs.map((tab, index) => (
           <li key={index}>
             <button
               className={`px-4 py-2 text-lg font-medium text-gray-700 bg-transparent focus:outline-none hover:text-green-700 bg-green-200 ${
-                activeSection === section
+                activeNewsTab === tab
                   ? "text-green-700  border-b-2 border-green-700 bg-green-200"
                   : ""
               } transition duration-300 ease-in-out`}
-              onClick={() => handleClick(section)}
+              onClick={() => handleClick(tab)}
             >
-              {section}
+              {tab.toUpperCase()}
             </button>
           </li>
         ))}

@@ -1,8 +1,6 @@
 import React, { useContext, FC, useState, useEffect } from "react";
-
-// https://newsapi.org/v2/top-headlines?country=us&apiKey=bb35831a96ff46feaa9a86668569191d
-
-// https://newsapi.org/v2/top-headlines?country=ng&apiKey=bb35831a96ff46feaa9a86668569191d
+import { useFilterContext } from "contexts";
+import { ENewsCategory } from "types";
 
 type NewsApiArticle = {
   title: string;
@@ -25,12 +23,16 @@ const NewsApiContext = React.createContext<NewsApiContextType>({
 });
 
 const NewsApiProvider: FC = ({ children }: any) => {
+  const { activeNewsTab } = useFilterContext();
   // define state and functions here
   const [newsApiArticles, setNewsApiArticles] = useState<NewsApiArticle[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const newsApiKey = import.meta.env.VITE_NEWS_API_KEY;
-  const apiUrl = `https://newsapi.org/v2/top-headlines?country=ng&apiKey=${newsApiKey}`;
+  const apiUrl =
+    activeNewsTab === ENewsCategory.All
+      ? `https://newsapi.org/v2/top-headlines?country=ng&apiKey=${newsApiKey}`
+      : `https://newsapi.org/v2/top-headlines?country=ng&category=${activeNewsTab}&apiKey=${newsApiKey}`;
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -47,7 +49,7 @@ const NewsApiProvider: FC = ({ children }: any) => {
     };
 
     fetchArticles();
-  }, []);
+  }, [activeNewsTab]);
 
   return (
     <NewsApiContext.Provider value={{ newsApiArticles, loading, error }}>
