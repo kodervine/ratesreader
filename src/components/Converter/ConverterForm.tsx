@@ -1,11 +1,12 @@
 import { MdCurrencyExchange } from "react-icons/md";
+import { ConverterInput } from "./ConverterInput";
 export const ConverterForm = () => {
   return (
     <main className="flex justify-center w-full">
       <section className="w-full rounded-lg shadow-lg p-6 flex">
         {/* <!-- Left Side --> */}
         <div className="flex flex-col w-1/3">
-          <ConverterForm />
+          <ConverterInput />
           <p className="text-xs text-gray-500 mt-3">
             Rates are updated every hour.
           </p>
@@ -20,7 +21,7 @@ export const ConverterForm = () => {
 
         {/* <!-- Right Side --> */}
         <div className="flex flex-col w-1/3">
-          <ConverterForm />
+          <ConverterInput />
           <p className="text-xs text-gray-500 mt-3">
             Rates are updated every hour.
           </p>
