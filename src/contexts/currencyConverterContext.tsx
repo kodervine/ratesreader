@@ -2,18 +2,31 @@ import { useLocalStorage } from "hooks/useLocalStorage";
 import React, { useContext, FC, useState, useEffect } from "react";
 import { CurrencyName } from "types/currency";
 
-interface CurrencyData {
-  year: string;
-  "Growth Rate": number;
-}
+/**
+
+The ConverterForm component uses this custom hook to manage currency-related states and functions.
+The hook provides the following values and functions:
+currencyNumberInput: The amount input value for currency conversion.
+handleCurrencyNumberInputValue: A function to handle changes in the amount input value.
+selectedCurrencyDropdown1: The selected "from" currency in the first dropdown.
+selectedCurrencyDropdown2: The selected "to" currency in the second dropdown.
+handleSelectedCurrencyDropdown1Value: A function to handle changes in the selected "from" currency.
+handleSelectedCurrencyDropdown2Value: A function to handle changes in the selected "to" currency.
+@returns An object containing the currency-related state values and functions.
+*/
 
 interface CurrencyConverterContextValue {
-  latestChartData: CurrencyData[];
+  // todo - better type declaration for the currency list
+  currencyList: any;
 }
 
-const CurrencyConverterApiContext = React.createContext<
-  CurrencyConverterContextValue | undefined
->(undefined);
+const CurrencyConverterApiContext =
+  React.createContext<CurrencyConverterContextValue>({
+    currencyList: {
+      code: "",
+      name: "",
+    },
+  });
 
 const CurrencyConverterApiProvider: FC<{ children: React.ReactNode }> = ({
   children,
@@ -64,12 +77,10 @@ const CurrencyConverterApiProvider: FC<{ children: React.ReactNode }> = ({
     }
   }, [currencyListToLocalStorage, setCurrencyListToLocalStorage]);
 
-  console.log(currencyList);
-
-  const [latestChartData, setLatestChartData] = useState<CurrencyData[]>([]);
+  // console.log(currencyList);
 
   return (
-    <CurrencyConverterApiContext.Provider value={{ latestChartData }}>
+    <CurrencyConverterApiContext.Provider value={{ currencyList }}>
       {children}
     </CurrencyConverterApiContext.Provider>
   );

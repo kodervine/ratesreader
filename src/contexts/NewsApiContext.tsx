@@ -22,6 +22,25 @@ const NewsApiContext = React.createContext<NewsApiContextType>({
   error: null,
 });
 
+/**
+
+The NewsApiProvider component wraps the application with a context that provides news articles fetched from the NewsAPI (https://newsapi.org/).
+It fetches news articles based on the active news tab category and stores the data in state.
+The component provides the following context values:
+newsApiArticles: An array of news articles with properties like title, description, url, source, and author.
+loading: A boolean indicating whether the articles are currently being loaded.
+error: A string containing the error message, if any, during the fetch process.
+@example
+// Usage inside a React component
+import { NewsApiProvider, useNewsContext } from "./NewsApiProvider";
+// In NewsDisplay component
+const NewsDisplay: React.FC = () => {
+const { newsApiArticles, loading, error } = useNewsContext();
+// Handle the state and render the news articles
+};
+@returns A context provider that fetches and provides news articles from the NewsAPI.
+*/
+
 const NewsApiProvider: FC = ({ children }: any) => {
   const { activeNewsTab } = useFilterContext();
   // define state and functions here
