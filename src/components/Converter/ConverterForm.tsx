@@ -1,6 +1,7 @@
-// BeautifulForm.tsx
-
-import { useSelectedCurrencyContext } from "contexts";
+import {
+  useCurrencyConverterApiContext,
+  useSelectedCurrencyContext,
+} from "contexts";
 import React, { useState, useEffect } from "react";
 
 interface DropdownOption {
@@ -27,6 +28,7 @@ export const ConverterForm: React.FC = () => {
     handleSelectedCurrencyDropdown1Value,
     handleSelectedCurrencyDropdown2Value,
   } = useSelectedCurrencyContext();
+  const { fetchConvertedCurrencyAmount } = useCurrencyConverterApiContext();
 
   // State to hold the options for dropdowns
   const [dropdownOptions, setDropdownOptions] = useState<DropdownOption[]>([]);
@@ -35,6 +37,7 @@ export const ConverterForm: React.FC = () => {
   // Function to handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    fetchConvertedCurrencyAmount();
     console.log(selectedCurrencyDropdown1, selectedCurrencyDropdown2);
   };
 
@@ -65,12 +68,14 @@ export const ConverterForm: React.FC = () => {
           >
             Amount
           </label>
+
           <input
             type="number"
             name="amount"
             value={currencyNumberInput}
-            onChange={(e) =>
-              handleCurrencyNumberInputValue(parseInt(e.target.value, 10))
+            onChange={
+              (e) => handleCurrencyNumberInputValue(e.target.value)
+              // handleCurrencyNumberInputValue(parseInt(e.target.value, 10))
             }
             placeholder="Enter any amount"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 outline-none"
@@ -84,6 +89,7 @@ export const ConverterForm: React.FC = () => {
           >
             From
           </label>
+
           <select
             value={selectedCurrencyDropdown1}
             name="from"
@@ -113,6 +119,7 @@ export const ConverterForm: React.FC = () => {
             onChange={(e) =>
               handleSelectedCurrencyDropdown2Value(e.target.value)
             }
+            onBlur={handleSubmit}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 "
           >
             <option value="">Choose another option</option>

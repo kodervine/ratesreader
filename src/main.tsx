@@ -15,15 +15,15 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Router>
       <ForexApiProvider>
-        <CurrencyConverterApiProvider>
-          <SelectedCurrencyProvider>
+        <SelectedCurrencyProvider>
+          <CurrencyConverterApiProvider>
             <FilterProvider>
               <NewsApiProvider>
                 <App />
               </NewsApiProvider>
             </FilterProvider>
-          </SelectedCurrencyProvider>
-        </CurrencyConverterApiProvider>
+          </CurrencyConverterApiProvider>{" "}
+        </SelectedCurrencyProvider>
       </ForexApiProvider>
     </Router>
   </React.StrictMode>

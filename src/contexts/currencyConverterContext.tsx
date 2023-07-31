@@ -1,6 +1,7 @@
 import { useLocalStorage } from "hooks/useLocalStorage";
 import React, { useContext, FC, useState, useEffect } from "react";
-import { CurrencyName } from "types/currency";
+import { CurrencyName, ICurrencyConversion } from "types/currency";
+import { useSelectedCurrencyContext } from "contexts";
 
 /**
 
@@ -18,6 +19,8 @@ handleSelectedCurrencyDropdown2Value: A function to handle changes in the select
 interface CurrencyConverterContextValue {
   // todo - better type declaration for the currency list
   currencyList: any;
+  fetchConvertedCurrencyAmount: () => void;
+  convertedCurrencyData: ICurrencyConversion;
 }
 
 const CurrencyConverterApiContext =
@@ -25,6 +28,21 @@ const CurrencyConverterApiContext =
     currencyList: {
       code: "",
       name: "",
+    },
+    fetchConvertedCurrencyAmount: () => {},
+    convertedCurrencyData: {
+      date: "",
+      info: {
+        timestamp: 0,
+        rate: 0,
+      },
+      query: {
+        from: "",
+        to: "",
+        amount: 0,
+      },
+      result: 0,
+      success: false,
     },
   });
 
@@ -77,10 +95,55 @@ const CurrencyConverterApiProvider: FC<{ children: React.ReactNode }> = ({
     }
   }, [currencyListToLocalStorage, setCurrencyListToLocalStorage]);
 
-  // console.log(currencyList);
+  // convert currency in real time
+  const {
+    currencyNumberInput,
+    selectedCurrencyDropdown1,
+    selectedCurrencyDropdown2,
+  } = useSelectedCurrencyContext();
+
+  const [convertedCurrencyData, setConvertedCurrencyData] =
+    useState<ICurrencyConversion>({
+      date: "",
+      info: { timestamp: 0, rate: 0 },
+      query: { from: "", to: "", amount: 0 },
+      result: 0,
+      success: false,
+    });
+
+  console.log(selectedCurrencyDropdown1);
+
+  const fetchConvertedCurrencyAmount = async () => {
+    console.log(selectedCurrencyDropdown1);
+    try {
+      const response = await fetch(
+        `${EXCHANGE_API_URL}convert?to=${selectedCurrencyDropdown1}&from=${selectedCurrencyDropdown2}&amount=${currencyNumberInput}`,
+        requestOptions
+      );
+      if (!response.ok) {
+        alert("error converting currencies");
+      }
+      const dataResponse = await response.json();
+      if (!dataResponse.success) {
+        throw new Error("API Error");
+      }
+
+      setConvertedCurrencyData(dataResponse);
+    } catch (error) {
+      console.error(`Can't convert currency: ${error}`);
+    }
+  };
+
+  // fetchConvertedCurrencyAmount();
 
   return (
-    <CurrencyConverterApiContext.Provider value={{ currencyList }}>
+    <CurrencyConverterApiContext.Provider
+      value={{
+        currencyList,
+        fetchConvertedCurrencyAmount,
+        convertedCurrencyData,
+      }}
+    >
       {children}
     </CurrencyConverterApiContext.Provider>
   );
