@@ -1,4 +1,9 @@
+import { useLocalStorage } from "hooks/useLocalStorage";
+
 export const ConverterInput = () => {
+  const currencyList = useLocalStorage("currencyList");
+
+  console.log(currencyList);
   return (
     <div className="flex justify-between">
       <div className="flex flex-col">
