@@ -19,18 +19,18 @@ Proposed idea - The currency data visualization dashboard is a tool that helps u
 
 ### Learned to use
 
-<!-- - Github Actions -->
+- Github Actions for CI/CD
 
 ## Current Features
+
+- Currency conversion: Able to convert one currency to another, using the latest exchange rate from exchange rates api.
+
+- News updates related to the foreign exchange market with news api.
+
+- Data visualization: The data is displayed an intuitive and user-friendly way, such as using charts to show trends and patterns in the data.
 
 ## Goals
 
 - Real-time currency exchange rates: The dashboard will display the current exchange rates for different currencies in real-time.
 
 - Historical price data: The dashboard will also show historical price data for different currencies, such as the price changes over time.
-
-- Currency conversion: The dashboard will have a feature to convert one currency to another, using the latest exchange rate.
-
-- News updates: The dashboard will display news updates related to the foreign exchange market.
-
-- Data visualization: The dashboard will visualize the data in an intuitive and user-friendly way, such as using charts and graphs to show trends and patterns in the data.
