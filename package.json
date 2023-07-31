@@ -12,6 +12,7 @@
     "@tremor/react": "^3.6.0",
     "chart.js": "^4.2.1",
     "date-fns": "^2.30.0",
+    "esbuild": "^0.18.17",
     "nanoid": "^4.0.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
