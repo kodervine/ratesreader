@@ -5,5 +5,5 @@ import tsconfigPaths from "vite-tsconfig-paths";
 // How I configure ts and vite for absolute import - https://stackoverflow.com/a/68250175/18892335
 export default defineConfig({
   plugins: [tsconfigPaths()],
-  base: "/ratesreader/",
+  base: "/",
 });
