@@ -4,7 +4,7 @@ import { Card, Subtitle, Metric, Text, Divider } from "@tremor/react";
 
 export const ConverterContainer = () => {
   const { convertedCurrencyData } = useCurrencyConverterApiContext();
-  console.log(convertedCurrencyData);
+
   const { date, info, query, result, success }: ICurrencyConversion =
     convertedCurrencyData;
   return (

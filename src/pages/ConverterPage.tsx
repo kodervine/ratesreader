@@ -1,4 +1,9 @@
-import { ConverterContainer, ConverterForm, Sidebar } from "components";
+import {
+  ConverterChart,
+  ConverterContainer,
+  ConverterForm,
+  Sidebar,
+} from "components";
 
 export const CurrencyConverterPage = () => {
   return (
@@ -10,6 +15,7 @@ export const CurrencyConverterPage = () => {
         </section>
         <ConverterForm />
         <ConverterContainer />
+        <ConverterChart />
       </main>
     </section>
   );

@@ -1,48 +1,78 @@
+import {
+  useCurrencyConverterApiContext,
+  useSelectedCurrencyContext,
+} from "contexts";
+import { ExchangeRatesByDate } from "types";
+import { useEffect, useState } from "react";
 import { Card, Title, LineChart } from "@tremor/react";
+import { format } from "date-fns";
 
-const chartdata = [
-  {
-    year: 1970,
-    "Export Growth Rate": 2.04,
-    "Import Growth Rate": 1.53,
-  },
-  {
-    year: 1971,
-    "Export Growth Rate": 1.96,
-    "Import Growth Rate": 1.58,
-  },
-  {
-    year: 1972,
-    "Export Growth Rate": 1.96,
-    "Import Growth Rate": 1.61,
-  },
-  {
-    year: 1973,
-    "Export Growth Rate": 1.93,
-    "Import Growth Rate": 1.61,
-  },
-  {
-    year: 1974,
-    "Export Growth Rate": 1.88,
-    "Import Growth Rate": 1.67,
-  },
-  //...
-];
+export const ConverterChart = () => {
+  const { getExchangeRatesForCurrencies } = useCurrencyConverterApiContext();
+  const { selectedFromCurrencyValue, selectedToCurrencyValue } =
+    useSelectedCurrencyContext();
 
-const dataFormatter = (number: number) =>
-  `${Intl.NumberFormat("us").format(number).toString()}%`;
+  const [exchangeRatesByDate, setExchangeRatesByDate] = useState<
+    ExchangeRatesByDate | undefined
+  >(undefined);
 
-export const ConverterChart = () => (
-  <Card>
-    <Title>Export/Import Growth Rates (1970 to 2021)</Title>
-    <LineChart
-      className="mt-6"
-      data={chartdata}
-      index="year"
-      categories={["Export Growth Rate", "Import Growth Rate"]}
-      colors={["emerald", "gray"]}
-      valueFormatter={dataFormatter}
-      yAxisWidth={40}
-    />
-  </Card>
-);
+  const [chartdata, setChartdata] = useState<any[]>([]);
+  useEffect(() => {
+    if (!exchangeRatesByDate) {
+      return;
+    }
+    // Transform fetched exchange rate to the desired chartdata format
+    const transformedData = Object.entries(exchangeRatesByDate as any)?.map(
+      ([date, rate]) => ({
+        Date: format(new Date(date), "dd/LLL"),
+        Rate: rate,
+      })
+    );
+
+    setChartdata(transformedData);
+  }, [getExchangeRatesForCurrencies]);
+
+  useEffect(() => {
+    setExchangeRatesByDate(undefined);
+
+    if (!selectedFromCurrencyValue || !selectedToCurrencyValue) {
+      return;
+    }
+
+    const getRates = async () => {
+      setExchangeRatesByDate(
+        await getExchangeRatesForCurrencies(
+          selectedFromCurrencyValue,
+          selectedToCurrencyValue
+        )
+      );
+    };
+
+    getRates();
+  }, [
+    selectedFromCurrencyValue,
+    selectedToCurrencyValue,
+    getExchangeRatesForCurrencies,
+  ]);
+
+  return (
+    <>
+      {chartdata.length > 0 && (
+        <Card>
+          <Title>1 month Historical rates</Title>
+          <LineChart
+            className="mt-6"
+            data={chartdata}
+            index="Date"
+            categories={["Rate"]}
+            colors={["emerald"]}
+            valueFormatter={(number: number) =>
+              ` ${Intl.NumberFormat("us").format(number).toString()}`
+            }
+            yAxisWidth={40}
+          />
+        </Card>
+      )}
+    </>
+  );
+};

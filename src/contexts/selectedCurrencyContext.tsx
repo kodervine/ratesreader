@@ -1,21 +1,21 @@
 import React, { createContext, useContext, useState } from "react";
 
 type SelectedCurrencyContextType = {
-  handleSelectedCurrencyDropdown1Value: (value: string) => void;
-  handleSelectedCurrencyDropdown2Value: (value: string) => void;
+  handleselectedFromCurrencyValue: (value: string) => void;
+  handleselectedToCurrencyValue: (value: string) => void;
   handleCurrencyNumberInputValue: (value: string) => void;
   currencyNumberInput: string;
-  selectedCurrencyDropdown1: string;
-  selectedCurrencyDropdown2: string;
+  selectedFromCurrencyValue: string;
+  selectedToCurrencyValue: string;
 };
 
 const SelectedCurrencyContext = createContext<SelectedCurrencyContextType>({
   currencyNumberInput: "",
-  handleSelectedCurrencyDropdown1Value: () => {},
-  handleSelectedCurrencyDropdown2Value: () => {},
+  handleselectedFromCurrencyValue: () => {},
+  handleselectedToCurrencyValue: () => {},
   handleCurrencyNumberInputValue: () => {},
-  selectedCurrencyDropdown1: "",
-  selectedCurrencyDropdown2: "",
+  selectedFromCurrencyValue: "",
+  selectedToCurrencyValue: "",
 });
 
 export const useSelectedCurrencyContext = (): SelectedCurrencyContextType => {
@@ -26,16 +26,16 @@ export const SelectedCurrencyProvider: React.FC = ({
   children,
 }: React.PropsWithChildren<{}>) => {
   const [currencyNumberInput, setCurrencyNumberInput] = useState<string>("");
-  const [selectedCurrencyDropdown1, setSelectedCurrencyDropdown1] =
+  const [selectedFromCurrencyValue, setselectedFromCurrencyValue] =
     useState<string>("");
-  const [selectedCurrencyDropdown2, setSelectedCurrencyDropdown2] =
+  const [selectedToCurrencyValue, setselectedToCurrencyValue] =
     useState<string>("");
 
-  const handleSelectedCurrencyDropdown1Value = (value: string) => {
-    setSelectedCurrencyDropdown1(value);
+  const handleselectedFromCurrencyValue = (value: string) => {
+    setselectedFromCurrencyValue(value);
   };
-  const handleSelectedCurrencyDropdown2Value = (value: string) => {
-    setSelectedCurrencyDropdown2(value);
+  const handleselectedToCurrencyValue = (value: string) => {
+    setselectedToCurrencyValue(value);
   };
   const handleCurrencyNumberInputValue = (value: string) => {
     setCurrencyNumberInput(value);
@@ -44,10 +44,10 @@ export const SelectedCurrencyProvider: React.FC = ({
   const values: SelectedCurrencyContextType = {
     currencyNumberInput,
     handleCurrencyNumberInputValue,
-    selectedCurrencyDropdown1,
-    selectedCurrencyDropdown2,
-    handleSelectedCurrencyDropdown1Value,
-    handleSelectedCurrencyDropdown2Value,
+    selectedFromCurrencyValue,
+    selectedToCurrencyValue,
+    handleselectedFromCurrencyValue,
+    handleselectedToCurrencyValue,
   };
 
   return (

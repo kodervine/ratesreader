@@ -23,10 +23,10 @@ export const ConverterForm: React.FC = () => {
   const {
     currencyNumberInput,
     handleCurrencyNumberInputValue,
-    selectedCurrencyDropdown1,
-    selectedCurrencyDropdown2,
-    handleSelectedCurrencyDropdown1Value,
-    handleSelectedCurrencyDropdown2Value,
+    selectedFromCurrencyValue,
+    selectedToCurrencyValue,
+    handleselectedFromCurrencyValue,
+    handleselectedToCurrencyValue,
   } = useSelectedCurrencyContext();
   const { fetchConvertedCurrencyAmount } = useCurrencyConverterApiContext();
 
@@ -38,7 +38,6 @@ export const ConverterForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     fetchConvertedCurrencyAmount();
-    console.log(selectedCurrencyDropdown1, selectedCurrencyDropdown2);
   };
 
   // Function to fetch and parse data from local storage for dropdowns
@@ -91,11 +90,9 @@ export const ConverterForm: React.FC = () => {
           </label>
 
           <select
-            value={selectedCurrencyDropdown1}
+            value={selectedFromCurrencyValue}
             name="from"
-            onChange={(e) =>
-              handleSelectedCurrencyDropdown1Value(e.target.value)
-            }
+            onChange={(e) => handleselectedFromCurrencyValue(e.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 "
             placeholder="Doe"
           >
@@ -115,10 +112,8 @@ export const ConverterForm: React.FC = () => {
             to
           </label>
           <select
-            value={selectedCurrencyDropdown2}
-            onChange={(e) =>
-              handleSelectedCurrencyDropdown2Value(e.target.value)
-            }
+            value={selectedToCurrencyValue}
+            onChange={(e) => handleselectedToCurrencyValue(e.target.value)}
             onBlur={handleSubmit}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 "
           >
