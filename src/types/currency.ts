@@ -53,3 +53,5 @@ export type {
   CurrencyName,
   ExchangeRatesByDate,
 };
+
+export {};
