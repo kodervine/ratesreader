@@ -18,14 +18,14 @@ export const NewsFilterTabs = () => {
 
   return (
     <nav className="flex justify-center mb-6 overflow-x-auto md:overflow-hidden">
-      <ul className="flex space-x-4">
+      <div className="flex items-center -mx-4 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap dark:bg-gray-800 dark:text-gray-100">
         {tabs.map((tab, index) => (
-          <li key={index}>
+          <li key={index} className="list-none">
             <button
-              className={`px-4 py-2 text-lg font-medium text-gray-700 bg-transparent focus:outline-none hover:text-green-700 bg-green-200 ${
+              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 hover:text-green-700  ${
                 activeNewsTab === tab
-                  ? "text-green-700  border-b-2 border-green-700 bg-green-200"
-                  : ""
+                  ? "border border-b-0 dark:border-gray-400 dark:text-gray-400 rounded-lg"
+                  : " border-b rounded-t-lg dark:text-gray-50"
               } transition duration-300 ease-in-out`}
               onClick={() => handleClick(tab)}
             >
@@ -33,7 +33,7 @@ export const NewsFilterTabs = () => {
             </button>
           </li>
         ))}
-      </ul>
+      </div>
     </nav>
   );
 };

@@ -6,7 +6,7 @@ export const DashboardPage = () => {
       <Sidebar />
 
       <section className="flex flex-col w-full">
-        <Header title="Dashboard Page" />
+        <Header title="Dashboard" />
         <article className="flex">
           <div className="w-full">
             <TopCards />

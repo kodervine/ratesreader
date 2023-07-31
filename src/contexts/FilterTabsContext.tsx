@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { FC, createContext, useContext, useState } from "react";
 import { ENewsCategory } from "types";
 
 type FilterContextType = {
@@ -15,9 +15,9 @@ export const useFilterContext = (): FilterContextType => {
   return useContext(FilterContext);
 };
 
-export const FilterProvider: React.FC = ({
+export const FilterNewsTabProvider: FC<{ children: React.ReactNode }> = ({
   children,
-}: React.PropsWithChildren<{}>) => {
+}) => {
   const [activeNewsTab, setActiveNewsTab] = useState(ENewsCategory.All);
 
   const handleFilterNewsTab = (section: ENewsCategory) => {

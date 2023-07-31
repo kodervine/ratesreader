@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import {
-  FilterProvider,
+  FilterNewsTabProvider,
   ForexApiProvider,
   NewsApiProvider,
   CurrencyConverterApiProvider,
@@ -17,11 +17,11 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <ForexApiProvider>
         <SelectedCurrencyProvider>
           <CurrencyConverterApiProvider>
-            <FilterProvider>
+            <FilterNewsTabProvider>
               <NewsApiProvider>
                 <App />
               </NewsApiProvider>
-            </FilterProvider>
+            </FilterNewsTabProvider>
           </CurrencyConverterApiProvider>{" "}
         </SelectedCurrencyProvider>
       </ForexApiProvider>

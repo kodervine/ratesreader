@@ -2,21 +2,24 @@ import {
   ConverterChart,
   ConverterContainer,
   ConverterForm,
+  Header,
   Sidebar,
 } from "components";
 
 export const CurrencyConverterPage = () => {
   return (
-    <section className="min-h-screen flex">
+    <main className="flex flex-row w-full">
       <Sidebar />
-      <main className="w-full">
+
+      <section className="flex flex-col w-full">
+        <Header title="Converter + Historical price ranges" />
         <section className="flex justify-between p-4 ">
-          <h3>Converter + Historical price ranges</h3>
+          <h3>Converter </h3>
         </section>
         <ConverterForm />
         <ConverterContainer />
         <ConverterChart />
-      </main>
-    </section>
+      </section>
+    </main>
   );
 };

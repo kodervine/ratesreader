@@ -14,9 +14,12 @@ Proposed idea - The currency data visualization dashboard is a tool that helps u
 - Tailwind css
 - Typescript
 - React Hooks
-- Netlify
+- [Tremor.so](https://www.tremor.so/)
+- [Exchange Rates Data API](https://apilayer.com/marketplace/exchangerates_data-api)
 
 ### Learned to use
+
+<!-- - Github Actions -->
 
 ## Current Features
 

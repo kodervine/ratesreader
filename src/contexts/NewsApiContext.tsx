@@ -41,7 +41,7 @@ const { newsApiArticles, loading, error } = useNewsContext();
 @returns A context provider that fetches and provides news articles from the NewsAPI.
 */
 
-const NewsApiProvider: FC = ({ children }: any) => {
+const NewsApiProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
   const { activeNewsTab } = useFilterContext();
   // define state and functions here
   const [newsApiArticles, setNewsApiArticles] = useState<NewsApiArticle[]>([]);
