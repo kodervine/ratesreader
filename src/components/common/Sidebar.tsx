@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { RxSketchLogo, RxDashboard } from "react-icons/rx";
 import { BsCurrencyExchange, BsNewspaper } from "react-icons/bs";
-import { FiSettings } from "react-icons/fi";
 import { Icon } from "@tremor/react";
 
 const sidebarItems = [
@@ -20,11 +19,11 @@ const sidebarItems = [
     icon: BsNewspaper,
     tooltip: "News",
   },
-  {
-    path: "/settings",
-    icon: FiSettings,
-    tooltio: "Settings",
-  },
+  // {
+  //   path: "/settings",
+  //   icon: FiSettings,
+  //   tooltip: "Settings",
+  // },
 ];
 
 export const Sidebar = () => {

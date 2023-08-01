@@ -3,14 +3,14 @@ import { GiReceiveMoney } from "react-icons/gi";
 
 export const TopCards = () => {
   return (
-    <main className="lg:col-span-2 col-span-1 bg-white flex  w-full border rounded-lg">
+    <main className="lg:col-span-2 col-span-1 flex  w-full border rounded-lg">
       <>
         {Array(3)
           .fill(null)
           .map((_, index) => {
             return (
               <Card
-                className="max-w-xs mx-auto flex flex-col pb-4 px-9 items-center justify-center"
+                className="max-w-xs mx-auto flex flex-col bg-gray-900 text-white pb-4 px-9 items-center justify-center"
                 decoration="top"
                 decorationColor="green"
                 key={index}

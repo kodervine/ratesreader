@@ -4,7 +4,7 @@ import {
 } from "contexts";
 import { ExchangeRatesByDate, ICurrencyConversion } from "types";
 import { useEffect, useState } from "react";
-import { Card, Title, LineChart } from "@tremor/react";
+import { AreaChart, Card, Title } from "@tremor/react";
 import { format } from "date-fns";
 
 export const ConverterChart = () => {
@@ -63,8 +63,8 @@ export const ConverterChart = () => {
       {success
         ? chartdata.length > 0 && (
             <Card className=" bg-gray-900 text-green-50">
-              <Title>1 month Historical rates</Title>
-              <LineChart
+              <Title className="text-green-50">1 month Historical rates</Title>
+              {/* <LineChart
                 className="mt-6"
                 data={chartdata}
                 index="Date"
@@ -74,6 +74,16 @@ export const ConverterChart = () => {
                   ` ${Intl.NumberFormat("us").format(number).toString()}`
                 }
                 yAxisWidth={40}
+              /> */}
+              <AreaChart
+                className="h-72 mt-4"
+                data={chartdata}
+                index="Date"
+                categories={["Rate"]}
+                colors={["teal"]}
+                valueFormatter={(number: number) =>
+                  ` ${Intl.NumberFormat("us").format(number).toString()}`
+                }
               />
             </Card>
           )

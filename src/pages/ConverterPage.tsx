@@ -11,7 +11,7 @@ export const CurrencyConverterPage = () => {
     <main className="flex flex-row w-full">
       <Sidebar />
 
-      <section className="flex flex-col w-full sm:px-2 lg:px-4">
+      <section className="flex flex-col w-full px-4">
         <Header title="Converter + Historical price ranges" />
         <section className="flex justify-between p-4 ">
           <h3>Converter </h3>
