@@ -48,18 +48,17 @@ export const Header = ({ title = "Rates reader" }: HeaderProps) => {
               type="search"
               name="Search"
               placeholder="Search..."
-              className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none dark:bg-gray-800 dark:text-gray-100 focus:dark:bg-gray-900"
+              className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none bg-gray-800 border border-gray-300 text-gray-50"
             />
           </div>
           <button
             type="button"
-            className="hidden px-6 py-2 font-semibold rounded lg:block dark:bg-violet-400 dark:text-gray-900"
+            className="hidden px-6 py-2 font-semibold rounded lg:block bg-green-800 text-green-50"
           >
             RatesReader
           </button>
         </div>
       </div>
     </header>
-    // </header>
   );
 };

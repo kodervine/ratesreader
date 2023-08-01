@@ -11,7 +11,7 @@ export const ConverterContainer = () => {
     <>
       {" "}
       {success ? (
-        <Card>
+        <Card className=" bg-gray-900 text-green-50">
           <Text>Date: {date}</Text>
           <Metric>Converted Amount: $ {result}</Metric>
           <Divider />

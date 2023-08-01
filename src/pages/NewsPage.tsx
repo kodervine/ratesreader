@@ -8,7 +8,7 @@ export const NewsPage = () => {
   return (
     <div className="min-h-screen flex">
       <Sidebar />
-      <div className="w-full">
+      <div className="w-full lg:px-4">
         <Header title="What's on the news?" />
         <div className="flex justify-between p-4 ">
           <h2 className="mb-12 text-center text-2xl font-bold font-robotoSlab">

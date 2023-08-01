@@ -77,7 +77,7 @@ export const ConverterForm: React.FC = () => {
               // handleCurrencyNumberInputValue(parseInt(e.target.value, 10))
             }
             placeholder="Enter any amount"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 outline-none"
+            className="bg-gray-800 border border-gray-300 text-gray-50 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 outline-none"
             required
           />
         </div>
@@ -93,7 +93,7 @@ export const ConverterForm: React.FC = () => {
             value={selectedFromCurrencyValue}
             name="from"
             onChange={(e) => handleselectedFromCurrencyValue(e.target.value)}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 "
+            className="bg-gray-800 border border-gray-300 text-gray-50  ext-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 "
             placeholder="Doe"
           >
             <option value="">Choose an option</option>
@@ -115,7 +115,7 @@ export const ConverterForm: React.FC = () => {
             value={selectedToCurrencyValue}
             onChange={(e) => handleselectedToCurrencyValue(e.target.value)}
             onBlur={handleSubmit}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 "
+            className="bg-gray-800 border border-gray-300 text-gray-50 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 "
           >
             <option value="">Choose another option</option>
             {dropdownOptions.map((option) => (

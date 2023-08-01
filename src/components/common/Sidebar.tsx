@@ -30,7 +30,7 @@ const sidebarItems = [
 export const Sidebar = () => {
   return (
     <div className="flex">
-      <div className="w-20 h-screen p-4 bg-white border-r-[1px] flex flex-col justify-between">
+      <div className="w-20 h-screen p-4  border-r-[1px] flex flex-col justify-between">
         <div className="flex flex-col items-center">
           <Link to="/">
             <div className="bg-green-800 text-white p-3 rounded-lg inline-block">
@@ -40,12 +40,12 @@ export const Sidebar = () => {
           <span className="border-b-[1px] border-gray-200 w-full p-2"></span>
           {sidebarItems.map((item, index) => (
             <Link to={item.path} key={index}>
-              <div className="bg-green-100 hover:bg-green-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
+              <div className="bg-gray-800 hover:bg-green-800 cursor-pointer my-4 p-3 rounded-lg inline-block">
                 <Icon
                   size={"lg"}
                   icon={item.icon}
                   tooltip={item.tooltip}
-                  className="text-green-700"
+                  className="text-white"
                 />
               </div>
             </Link>

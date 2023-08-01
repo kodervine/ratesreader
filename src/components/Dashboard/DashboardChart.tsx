@@ -33,7 +33,7 @@ const dataFormatter = (number: number) =>
   `${Intl.NumberFormat("us").format(number).toString()}%`;
 
 export const DashboardChart = () => (
-  <Card>
+  <Card className=" bg-gray-900 text-green-50">
     <Title>Export/Import Growth Rates (1970 to 2021)</Title>
     <LineChart
       className="mt-6"

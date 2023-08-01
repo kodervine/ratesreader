@@ -1,5 +1,7 @@
 # In progress...
 
+Demo - https://ratesreader.brimble.app
+
 ## ratesreader
 
 This tool provides real-time exchange rates, historical price data, and news updates for multiple currencies, displayed through intuitive visualizations

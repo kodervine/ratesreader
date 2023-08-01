@@ -39,7 +39,10 @@ export const NewsGrid = () => {
           const IconComponent = categoryIcons[activeNewsTab];
 
           return (
-            <Card key={index}>
+            <Card
+              key={index}
+              className="  bg-gray-900 opacity-90 text-green-50"
+            >
               <section className="mb-6 lg:mb-0">
                 <div
                   className="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
@@ -59,20 +62,20 @@ export const NewsGrid = () => {
 
                 <div className="p-8 space-y-3  rounded-xl">
                   {IconComponent && (
-                    <span className="inline-block text-green-700">
+                    <span className="inline-block text-green-50">
                       <IconComponent className="w-8 h-8" />
                     </span>
                   )}
-                  <p className="text-gray-500">
+                  <p className="text-gray-100">
                     {formattedDate} by{" "}
                     <a
                       href={url}
-                      className="inline-flex p-2 px-4 text-green-800 capitalize transition-colors duration-200 transform bg-green-100 rounded-full  hover:underline hover:text-green-600"
+                      className="inline-flex p-2 px-4 text-green-100 capitalize transition-colors duration-200 transform bg-gray-800 rounded-full  hover:underline hover:text-green-200"
                     >
                       {author}
                     </a>
                   </p>
-                  <h1 className="text-2xl font-semibold text-gray-700 capitalize">
+                  <h1 className="text-2xl font-semibold text-gray-400 capitalize">
                     {title}
                   </h1>
                 </div>

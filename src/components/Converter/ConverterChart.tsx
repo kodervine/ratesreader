@@ -62,7 +62,7 @@ export const ConverterChart = () => {
     <>
       {success
         ? chartdata.length > 0 && (
-            <Card>
+            <Card className=" bg-gray-900 text-green-50">
               <Title>1 month Historical rates</Title>
               <LineChart
                 className="mt-6"
