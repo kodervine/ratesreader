@@ -22,9 +22,11 @@ const SelectedCurrencyContext = createContext<SelectedCurrencyContextType>({
   handleSelectedDateValue: () => {},
 });
 
-export const useSelectedCurrencyContext = (): SelectedCurrencyContextType => {
+const useSelectedCurrencyContext = (): SelectedCurrencyContextType => {
   return useContext(SelectedCurrencyContext);
 };
+
+export { useSelectedCurrencyContext };
 
 export const SelectedCurrencyProvider: FC<{ children: React.ReactNode }> = ({
   children,
