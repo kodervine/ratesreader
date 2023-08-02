@@ -1,3 +1,4 @@
+import { SearchSelect, SearchSelectItem } from "@tremor/react";
 import {
   useCurrencyConverterApiContext,
   useSelectedCurrencyContext,
@@ -37,8 +38,26 @@ export const ConverterForm: React.FC = () => {
   // Function to handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    fetchConvertedCurrencyAmount();
+    if (selectedFromCurrencyValue && selectedToCurrencyValue) {
+      fetchConvertedCurrencyAmount();
+    }
   };
+
+  // let ref: any;
+  // ref = useRef<HTMLFormElement>();
+  // function handleKeyUp(event: any) {
+  //   event.preventDefault()
+  //   if (event.keyCode === 13) {
+  //     ref.current.submit();
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   window.addEventListener("keyup", handleKeyUp);
+  //   return () => {
+  //     window.removeEventListener("keyup", handleKeyUp);
+  //   };
+  // }, []);
 
   // Function to fetch and parse data from local storage for dropdowns
   const fetchDataFromLocalStorage = () => {
@@ -52,7 +71,7 @@ export const ConverterForm: React.FC = () => {
       }
     }
   };
-
+  //
   // fetch data from local storage on component mount
   useEffect(() => {
     fetchDataFromLocalStorage();
@@ -77,7 +96,7 @@ export const ConverterForm: React.FC = () => {
               // handleCurrencyNumberInputValue(parseInt(e.target.value, 10))
             }
             placeholder="Enter any amount"
-            className="bg-gray-800 border border-gray-300 text-gray-50 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 outline-none"
+            className="text-gray-900 border border-gray-300  text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 outline-none"
             required
           />
         </div>
@@ -88,21 +107,19 @@ export const ConverterForm: React.FC = () => {
           >
             From
           </label>
-
-          <select
+          {/* className="bg-gray-800 border border-gray-300 text-gray-50  ext-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" */}
+          <SearchSelect
             value={selectedFromCurrencyValue}
-            name="from"
-            onChange={(e) => handleselectedFromCurrencyValue(e.target.value)}
-            className="bg-gray-800 border border-gray-300 text-gray-50  ext-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 "
-            placeholder="Doe"
+            onValueChange={handleselectedFromCurrencyValue}
+            id="from"
+            placeholder="Choose a currency"
           >
-            <option value="">Choose an option</option>
             {dropdownOptions.map((option) => (
-              <option key={option.code} value={option.code}>
+              <SearchSelectItem key={option.code} value={option.code}>
                 {option.code + " - " + option.name}
-              </option>
+              </SearchSelectItem>
             ))}
-          </select>
+          </SearchSelect>
         </div>
         <div>
           <label
@@ -111,19 +128,19 @@ export const ConverterForm: React.FC = () => {
           >
             to
           </label>
-          <select
+          <SearchSelect
             value={selectedToCurrencyValue}
-            onChange={(e) => handleselectedToCurrencyValue(e.target.value)}
-            onBlur={handleSubmit}
-            className="bg-gray-800 border border-gray-300 text-gray-50 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 "
+            onValueChange={handleselectedToCurrencyValue}
+            id="to"
+            // onBlur={handleSubmit}
+            placeholder="Choose another currency"
           >
-            <option value="">Choose another option</option>
             {dropdownOptions.map((option) => (
-              <option key={option.code} value={option.code}>
+              <SearchSelectItem key={option.code} value={option.code}>
                 {option.code + " - " + option.name}
-              </option>
+              </SearchSelectItem>
             ))}
-          </select>
+          </SearchSelect>
         </div>
       </section>
     </form>

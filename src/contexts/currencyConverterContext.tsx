@@ -7,7 +7,11 @@ import {
   SymbolsResponse,
   TimeseriesResponse,
 } from "types/currency";
-import { useSelectedCurrencyContext } from "contexts";
+import {
+  EXCHANGE_API_URL,
+  requestOptions,
+  useSelectedCurrencyContext,
+} from "contexts";
 import { format, sub } from "date-fns";
 
 /**
@@ -37,6 +41,7 @@ interface CurrencyConverterContextValue {
   fetchConvertedCurrencyAmount: () => void;
   convertedCurrencyData: ICurrencyConversion;
   getExchangeRatesForCurrencies: ExchangeRatesContextType["getExchangeRatesForCurrencies"];
+  isTimeSeriesLoading: boolean;
 }
 
 const CurrencyConverterApiContext =
@@ -62,20 +67,12 @@ const CurrencyConverterApiContext =
     },
     getExchangeRatesForCurrencies: () =>
       new Promise<ExchangeRatesByDate | undefined>(() => {}),
+    isTimeSeriesLoading: false,
   });
 
 const CurrencyConverterApiProvider: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const { VITE_API_LAYER_EXCHANGE_RATES_API_KEY } = import.meta.env;
-
-  const EXCHANGE_API_URL = "https://api.apilayer.com/exchangerates_data/";
-  const apiLayerFetchHeaders = new Headers();
-  apiLayerFetchHeaders.append("apikey", VITE_API_LAYER_EXCHANGE_RATES_API_KEY);
-  const requestOptions = {
-    headers: apiLayerFetchHeaders,
-  };
-
   // fetch available symbols
   const [currencyList, setCurrencyList] = useState<Error | CurrencyName[]>();
   const [currencyListToLocalStorage, setCurrencyListToLocalStorage] =
@@ -88,8 +85,9 @@ const CurrencyConverterApiProvider: FC<{ children: React.ReactNode }> = ({
           `${EXCHANGE_API_URL}symbols`,
           requestOptions
         );
+
         if (!response.ok) {
-          alert("error fetching available currencies");
+          throw new Error("error fetching available currencies");
         }
         const symbolsJSON: SymbolsResponse = await response.json();
         if (!symbolsJSON.success) {
@@ -136,7 +134,7 @@ const CurrencyConverterApiProvider: FC<{ children: React.ReactNode }> = ({
         requestOptions
       );
       if (!response.ok) {
-        alert("error converting currencies");
+        throw new Error("error converting currencies");
       }
       const dataResponse = await response.json();
       if (!dataResponse.success) {
@@ -149,12 +147,13 @@ const CurrencyConverterApiProvider: FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  //  historical data
+  //  time series
   const [timeseriesLocalStorage, setTimeseriesLocalStorage] =
     useLocalStorage("timeseries");
   const [timeseries, setTimeseries] = useState<{
     [timeseriesParameters: string]: ExchangeRatesByDate;
   }>({});
+  const [isTimeSeriesLoading, setIsTimeseriesLoading] = useState(false);
 
   useEffect(() => {
     if (!timeseriesLocalStorage) {
@@ -173,6 +172,7 @@ const CurrencyConverterApiProvider: FC<{ children: React.ReactNode }> = ({
       const timeseriesParameters = `start_date=${fromDate}&end_date=${todayDate}&base=${fromCurrencyCode}&symbols=${toCurrencyCode}`;
 
       const fetchExchangeRates = async () => {
+        setIsTimeseriesLoading(true);
         try {
           const ratesResponse = await fetch(
             `${EXCHANGE_API_URL}timeseries?${timeseriesParameters}`,
@@ -193,11 +193,11 @@ const CurrencyConverterApiProvider: FC<{ children: React.ReactNode }> = ({
           Object.entries(ratesJSON.rates).forEach(([date, value]) => {
             transformedRates[date] = value[toCurrencyCode];
           });
-
+          setIsTimeseriesLoading(false);
           return transformedRates;
         } catch (error) {
           console.error(`Can't get exchange rates ${error}`);
-
+          setIsTimeseriesLoading(false);
           return new Error();
         }
       };
@@ -233,6 +233,7 @@ const CurrencyConverterApiProvider: FC<{ children: React.ReactNode }> = ({
         fetchConvertedCurrencyAmount,
         convertedCurrencyData,
         getExchangeRatesForCurrencies,
+        isTimeSeriesLoading,
       }}
     >
       {children}

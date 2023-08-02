@@ -6,6 +6,7 @@ import { ExchangeRatesByDate, ICurrencyConversion } from "types";
 import { useEffect, useState } from "react";
 import { AreaChart, Card, Title } from "@tremor/react";
 import { format } from "date-fns";
+import { Spinner } from "components";
 
 export const ConverterChart = () => {
   const { getExchangeRatesForCurrencies } = useCurrencyConverterApiContext();
@@ -54,15 +55,23 @@ export const ConverterChart = () => {
     selectedToCurrencyValue,
     getExchangeRatesForCurrencies,
   ]);
-  const { convertedCurrencyData } = useCurrencyConverterApiContext();
+  const { convertedCurrencyData, isTimeSeriesLoading } =
+    useCurrencyConverterApiContext();
 
-  const { date, info, query, result, success }: ICurrencyConversion =
-    convertedCurrencyData;
+  const { success }: ICurrencyConversion = convertedCurrencyData;
+
+  if (isTimeSeriesLoading) {
+    return (
+      <section className="text-center">
+        <Spinner />
+      </section>
+    );
+  }
   return (
     <>
       {success
         ? chartdata.length > 0 && (
-            <Card className=" bg-gray-900 text-green-50">
+            <Card className=" bg-gray-900 text-green-50 z-20">
               <Title className="text-green-50">1 month Historical rates</Title>
               {/* <LineChart
                 className="mt-6"
