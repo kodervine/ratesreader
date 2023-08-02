@@ -1,7 +1,7 @@
-import { SearchSelect, SearchSelectItem } from "@tremor/react";
+import { SearchSelect, SearchSelectItem, DatePicker } from "@tremor/react";
 import {
-  useCurrencyConverterApiContext,
   useSelectedCurrencyContext,
+  useExchangeRatesByDateContext,
 } from "contexts";
 import React, { useState, useEffect } from "react";
 
@@ -10,58 +10,24 @@ interface DropdownOption {
   name: string;
 }
 
-/**
-
-This component provides a  form for converting currencies.
-The form consists of three inputs: an amount input, and two dropdowns for selecting the "from" and "to" currencies.
-The component fetches and parses data from local storage to populate the dropdown options.
-@example
-// Usage inside a React component
-@returns A  form for currency conversion.
-*/
-
-export const ConverterForm: React.FC = () => {
+export const RateByDate: React.FC = () => {
   const {
-    currencyNumberInput,
-    handleCurrencyNumberInputValue,
     selectedFromCurrencyValue,
     selectedToCurrencyValue,
     handleselectedFromCurrencyValue,
     handleselectedToCurrencyValue,
+    selectedDateValue,
+    handleSelectedDateValue,
   } = useSelectedCurrencyContext();
-  const { fetchConvertedCurrencyAmount } = useCurrencyConverterApiContext();
 
-  // State to hold the options for dropdowns
+  const { getExchangeRatesByDate } = useExchangeRatesByDateContext();
+
   const [dropdownOptions, setDropdownOptions] = useState<DropdownOption[]>([]);
-  // Check if currencyNumberInput is NaN and set it to 0 if true
 
-  // Function to handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (
-      selectedFromCurrencyValue &&
-      selectedToCurrencyValue &&
-      currencyNumberInput
-    ) {
-      fetchConvertedCurrencyAmount();
-    }
+    getExchangeRatesByDate();
   };
-
-  // let ref: any;
-  // ref = useRef<HTMLFormElement>();
-  // function handleKeyUp(event: any) {
-  //   event.preventDefault()
-  //   if (event.keyCode === 13) {
-  //     ref.current.submit();
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   window.addEventListener("keyup", handleKeyUp);
-  //   return () => {
-  //     window.removeEventListener("keyup", handleKeyUp);
-  //   };
-  // }, []);
 
   // Function to fetch and parse data from local storage for dropdowns
   const fetchDataFromLocalStorage = () => {
@@ -75,33 +41,24 @@ export const ConverterForm: React.FC = () => {
       }
     }
   };
-  //
+
   // fetch data from local storage on component mount
   useEffect(() => {
     fetchDataFromLocalStorage();
   }, []);
   return (
     <form onSubmit={handleSubmit}>
-      <section className="grid gap-6 mb-6 md:grid-cols-3">
+      <section className="grid gap-6 mb-3 px-4">
         <div>
           <label
             htmlFor="amount"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Amount
+            Date
           </label>
-
-          <input
-            type="number"
-            name="amount"
-            value={currencyNumberInput}
-            onChange={
-              (e) => handleCurrencyNumberInputValue(e.target.value)
-              // handleCurrencyNumberInputValue(parseInt(e.target.value, 10))
-            }
-            placeholder="Enter any amount"
-            className="text-gray-900 border border-gray-300  text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 outline-none"
-            required
+          <DatePicker
+            className="w-full"
+            onValueChange={handleSelectedDateValue}
           />
         </div>
         <div>
@@ -109,9 +66,8 @@ export const ConverterForm: React.FC = () => {
             htmlFor="last_name"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            From
+            Base Currency
           </label>
-          {/* className="bg-gray-800 border border-gray-300 text-gray-50  ext-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" */}
           <SearchSelect
             value={selectedFromCurrencyValue}
             onValueChange={handleselectedFromCurrencyValue}
@@ -136,7 +92,7 @@ export const ConverterForm: React.FC = () => {
             value={selectedToCurrencyValue}
             onValueChange={handleselectedToCurrencyValue}
             id="to"
-            // onBlur={handleSubmit}
+            onBlur={handleSubmit}
             placeholder="Choose another currency"
           >
             {dropdownOptions.map((option) => (

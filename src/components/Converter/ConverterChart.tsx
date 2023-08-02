@@ -2,7 +2,7 @@ import {
   useCurrencyConverterApiContext,
   useSelectedCurrencyContext,
 } from "contexts";
-import { ExchangeRatesByDate, ICurrencyConversion } from "types";
+import { ExchangeRatesByDate } from "types";
 import { useEffect, useState } from "react";
 import { AreaChart, Card, Title } from "@tremor/react";
 import { format } from "date-fns";
@@ -22,6 +22,7 @@ export const ConverterChart = () => {
     if (!exchangeRatesByDate) {
       return;
     }
+    console.log(exchangeRatesByDate);
     // Transform fetched exchange rate to the desired chartdata format
     const transformedData = Object.entries(exchangeRatesByDate as any)?.map(
       ([date, rate]) => ({
@@ -58,7 +59,7 @@ export const ConverterChart = () => {
   const { convertedCurrencyData, isTimeSeriesLoading } =
     useCurrencyConverterApiContext();
 
-  const { success }: ICurrencyConversion = convertedCurrencyData;
+  console.log(chartdata, convertedCurrencyData);
 
   if (isTimeSeriesLoading) {
     return (
@@ -69,34 +70,22 @@ export const ConverterChart = () => {
   }
   return (
     <>
-      {success
-        ? chartdata.length > 0 && (
-            <Card className=" bg-gray-900 text-green-50 z-20">
-              <Title className="text-green-50">1 month Historical rates</Title>
-              {/* <LineChart
-                className="mt-6"
-                data={chartdata}
-                index="Date"
-                categories={["Rate"]}
-                colors={["emerald"]}
-                valueFormatter={(number: number) =>
-                  ` ${Intl.NumberFormat("us").format(number).toString()}`
-                }
-                yAxisWidth={40}
-              /> */}
-              <AreaChart
-                className="h-72 mt-4"
-                data={chartdata}
-                index="Date"
-                categories={["Rate"]}
-                colors={["teal"]}
-                valueFormatter={(number: number) =>
-                  ` ${Intl.NumberFormat("us").format(number).toString()}`
-                }
-              />
-            </Card>
-          )
-        : null}
+      {chartdata.length > 0 && (
+        <Card className=" bg-gray-900 text-green-50 z-20">
+          <Title className="text-green-50">1 month Historical rates</Title>
+
+          <AreaChart
+            className="h-72 mt-4"
+            data={chartdata}
+            index="Date"
+            categories={["Rate"]}
+            colors={["teal"]}
+            valueFormatter={(number: number) =>
+              ` ${Intl.NumberFormat("us").format(number).toString()}`
+            }
+          />
+        </Card>
+      )}
     </>
   );
 };

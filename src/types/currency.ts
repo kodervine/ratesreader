@@ -1,3 +1,21 @@
+export type CurrencyFluctuationData = {
+  [currencyCode: string]: {
+    change: number;
+    change_pct: number;
+    end_rate: number;
+    start_rate: number;
+  };
+};
+
+export type FluctuationApiResponse = {
+  base: string;
+  end_date: string;
+  fluctuation: boolean;
+  rates: CurrencyFluctuationData;
+  start_date: string;
+  success: boolean;
+};
+
 export interface ICurrencyConversion {
   date: string;
   info: {

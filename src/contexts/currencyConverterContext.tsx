@@ -147,7 +147,7 @@ const CurrencyConverterApiProvider: FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  //  time series
+  // Fetch one month time series with selected currencies
   const [timeseriesLocalStorage, setTimeseriesLocalStorage] =
     useLocalStorage("timeseries");
   const [timeseries, setTimeseries] = useState<{
