@@ -45,7 +45,6 @@ export const FluctuationProvider: FC<{ children: React.ReactNode }> = ({
         if (!responseData.success) {
           throw new Error("API Error");
         }
-        console.log(responseData);
         setFluctuationData(responseData);
       } catch (error) {
         console.error(`Can't get fluctuation rates: ${error}`);

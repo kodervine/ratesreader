@@ -25,29 +25,14 @@ The currency data visualization dashboard is a tool that helps users stay update
 
 ## Current Features
 
+- Real-time currency exchange rates: The dashboard will display the current exchange rates for different currencies in real-time.
+
 - Currency conversion: Able to convert one currency to another, using the latest exchange rate from exchange rates api.
 
 - News updates related to the foreign exchange market with news api.
+  ![News page](src/assets/newspage.jpg)
 
 - Data visualization: The data is displayed an intuitive and user-friendly way, such as using charts to show trends and patterns in the data.
-
-## Goals
-
-- Real-time currency exchange rates: The dashboard will display the current exchange rates for different currencies in real-time.
-
-- Historical price data: The dashboard will also show historical price data for different currencies, such as the price changes over time.
-
-- Area Chart or bar chart (fluctuation of exchange rates)
-  Input fields for start date, end date, base currency, and symbols (if applicable)
-
-- Real-Time Exchange Rate Data Endpoint Section:
-
-  - Live Updating Line Chart (real-time exchange rates)
-  - Input fields for base currency and symbols (if applicable)
-
-- Historical Rates Endpoint Section:
-  - Line Chart (historical exchange rates)
-  - Input fields for date, base currency, and symbols (if applicable)
 
 <!-- Small screen still has some empty spaces especially on the dashboard, news api pages. maybe remove overflow. But overflow will affect the tabs that are on the news api then
 Use area chart for the currency conversion rate

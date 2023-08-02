@@ -1,4 +1,4 @@
-import { Grid, Card } from "@tremor/react";
+import { Card } from "@tremor/react";
 import {
   MdPublic,
   MdOutlineSocialDistance,
@@ -26,9 +26,6 @@ export const NewsGrid = () => {
 
   return (
     <>
-      <Grid numItems={1} numItemsSm={2} numItemsLg={3} className="gap-2">
-        {/* Grid */}
-      </Grid>
       <section className="grid gap-6 lg:grid-cols-3 xl:gap-x-2">
         {newsApiArticles?.map((newsitems: any, index) => {
           const { source, author, title, url, publishedAt } = newsitems;
@@ -45,7 +42,7 @@ export const NewsGrid = () => {
             >
               <section className="mb-6 lg:mb-0">
                 <div
-                  className="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+                  className="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg "
                   data-te-ripple-init
                   data-te-ripple-color="light"
                 >
@@ -70,7 +67,7 @@ export const NewsGrid = () => {
                     {formattedDate} by{" "}
                     <a
                       href={url}
-                      className="inline-flex p-2 px-4 text-green-100 capitalize transition-colors duration-200 transform bg-gray-800 rounded-full  hover:underline hover:text-green-200"
+                      className="inline-flex p-2 px-4 text-green-100 capitalize transition-colors duration-200 transform bg-gray-800 rounded-full hover:underline hover:text-green-200"
                     >
                       {author}
                     </a>

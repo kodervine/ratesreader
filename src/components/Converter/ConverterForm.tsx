@@ -5,7 +5,7 @@ import {
 } from "contexts";
 import React, { useState, useEffect } from "react";
 
-interface DropdownOption {
+export interface DropdownOption {
   code: string;
   name: string;
 }
@@ -86,7 +86,7 @@ export const ConverterForm: React.FC = () => {
         <div>
           <label
             htmlFor="amount"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900"
           >
             Amount
           </label>
@@ -107,7 +107,7 @@ export const ConverterForm: React.FC = () => {
         <div>
           <label
             htmlFor="last_name"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900"
           >
             From
           </label>
@@ -128,7 +128,7 @@ export const ConverterForm: React.FC = () => {
         <div>
           <label
             htmlFor="to"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900"
           >
             to
           </label>

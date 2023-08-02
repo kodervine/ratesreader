@@ -22,7 +22,6 @@ export const ConverterChart = () => {
     if (!exchangeRatesByDate) {
       return;
     }
-    console.log(exchangeRatesByDate);
     // Transform fetched exchange rate to the desired chartdata format
     const transformedData = Object.entries(exchangeRatesByDate as any)?.map(
       ([date, rate]) => ({
@@ -58,8 +57,6 @@ export const ConverterChart = () => {
   ]);
   const { convertedCurrencyData, isTimeSeriesLoading } =
     useCurrencyConverterApiContext();
-
-  console.log(chartdata, convertedCurrencyData);
 
   if (isTimeSeriesLoading) {
     return (

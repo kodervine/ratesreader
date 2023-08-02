@@ -45,7 +45,6 @@ export const ExchangeRatesByDateProvider: FC<{ children: React.ReactNode }> = ({
       );
       const data = await response.json();
       setExchangeRatesByDate(data);
-      console.log(data);
     } catch (error) {
       console.error("Error fetching exchange rates by date:", error);
     }
