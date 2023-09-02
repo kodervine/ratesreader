@@ -140,6 +140,7 @@ const CurrencyConverterApiProvider: FC<{ children: React.ReactNode }> = ({
       if (!dataResponse.success) {
         throw new Error("API Error");
       }
+      console.log(dataResponse);
 
       setConvertedCurrencyData(dataResponse);
     } catch (error) {

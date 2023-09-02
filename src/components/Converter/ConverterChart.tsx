@@ -68,7 +68,7 @@ export const ConverterChart = () => {
   return (
     <>
       {chartdata.length > 0 && (
-        <Card className=" bg-gray-900 text-green-50 z-20">
+        <Card className=" bg-gray-900 text-green-50 z-20 mt-10">
           <Title className="text-green-50">1 month Historical rates</Title>
 
           <AreaChart

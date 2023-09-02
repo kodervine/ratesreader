@@ -9,7 +9,6 @@ export const ConverterContainer = () => {
     convertedCurrencyData;
   return (
     <>
-      {" "}
       {success ? (
         <Card className=" bg-gray-900 text-green-50">
           <Text>Date: {date}</Text>
